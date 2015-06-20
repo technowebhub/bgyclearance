@@ -15,6 +15,7 @@ import com.thub.areyes1.exception.BarangayClearanceServiceException;
 import com.thub.areyes1.obj.BarangayClearance;
 import com.thub.areyes1.obj.BarangayClearanceReport;
 
+@Repository
 public class BarangayClearanceDaoImpl extends BaseDao implements BarangayClearanceDao {
 	
 	public BarangayClearance saveClearance(BarangayClearance barangayClearance)

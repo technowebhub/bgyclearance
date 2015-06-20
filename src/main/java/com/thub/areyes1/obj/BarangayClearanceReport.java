@@ -7,12 +7,14 @@
 
 package com.thub.areyes1.obj;
 
+import net.sf.jasperreports.engine.JasperPrint;
+
 public class BarangayClearanceReport {
 
 	private int id;
 	
-	
 	private BarangayClearance barangayClearance;
+	private JasperPrint barangayClearancePrint;
 	public int getId() {
 		return id;
 	}
@@ -25,8 +27,11 @@ public class BarangayClearanceReport {
 	public void setBarangayClearance(BarangayClearance barangayClearance) {
 		this.barangayClearance = barangayClearance;
 	}
-	
-	
-	
+	public JasperPrint getBarangayClearancePrint() {
+		return barangayClearancePrint;
+	}
+	public void setBarangayClearancePrint(JasperPrint barangayClearancePrint) {
+		this.barangayClearancePrint = barangayClearancePrint;
+	}
 	
 }

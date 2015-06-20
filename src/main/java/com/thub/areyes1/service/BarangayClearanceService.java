@@ -13,9 +13,7 @@ import com.thub.areyes1.exception.BarangayClearanceServiceException;
 import com.thub.areyes1.obj.BarangayClearance;
 import com.thub.areyes1.obj.BarangayClearanceReport;
 
-@Service
 public interface BarangayClearanceService {
-
 	public BarangayClearance saveClearance(BarangayClearance barangayClearance) throws BarangayClearanceServiceException;
 	public boolean removeClearance(BarangayClearance barangayClearance) throws BarangayClearanceServiceException;
 	public BarangayClearanceReport generateBarangayReport(BarangayClearance barangayClearance) throws BarangayClearanceServiceException;

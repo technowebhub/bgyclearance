@@ -9,6 +9,7 @@ package com.thub.areyes1.ui;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
+import java.awt.Frame;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -23,21 +24,25 @@ import javax.swing.JSeparator;
 import javax.swing.JTabbedPane;
 import javax.swing.border.LineBorder;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import net.sf.jasperreports.view.JasperViewer;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import com.thub.areyes1.exception.BarangayClearanceServiceException;
+import com.thub.areyes1.factory.ServiceFactory;
+import com.thub.areyes1.factory.ServiceType;
 import com.thub.areyes1.obj.BarangayClearance;
 import com.thub.areyes1.service.BarangayClearanceService;
 
 import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.security.acl.Owner;
 
+@Component
 public class BgyClearanceRegistrationDialog extends JDialog {
-
-	//	Services
-	@Autowired
-	private BarangayClearanceService barangayClearanceService;
+	
+	private BarangayClearanceService barangayClearanceService = ServiceFactory.getService(ServiceType.BGY_CLEARANCE_SERVICE); 
 	
 	private BarangayClearance barangayClearance =new BarangayClearance();
 	private final JPanel contentPanel = new JPanel();
@@ -81,6 +86,7 @@ public class BgyClearanceRegistrationDialog extends JDialog {
 		contentPanel.add(tabbedPane);
 		
 		JPanel panel = new JPanel();
+		panel.setBorder(new LineBorder(new Color(0, 0, 0)));
 		tabbedPane.addTab("Registration", null, panel, null);
 		panel.setLayout(null);
 		
@@ -251,15 +257,26 @@ public class BgyClearanceRegistrationDialog extends JDialog {
 						barangayClearance.setCapitalization(capitalizationTxt.getText());
 						barangayClearance.setAssocHomeOwnerPresident(assocHomeOwnerTxt.getText());
 						barangayClearance.setApplicantMemberOf(applicantMemberOfTxt.getText());
-						barangayClearance.setAmountPaid(Float.valueOf(amountPaid.getText()));
+						barangayClearance.setAmountPaid(
+								Float.valueOf((amountPaid.getText().equals("") ? "0" : amountPaid.getText())));
 						barangayClearance.setAddress(addressTxt.getText());
 						
-						
-						//	Save and generate the report.
-						
-						//	Generate the report
-						
-						
+						//	Save Report.
+						try{
+							
+							JasperViewer jV = new JasperViewer(barangayClearanceService
+									.generateAndSaveBarangayReport(barangayClearance)
+									.getBarangayClearancePrint());
+							jV.setTitle("Barangay Clearance Report");
+							jV.setAlwaysOnTop(true);
+							jV.setExtendedState(JasperViewer.MAXIMIZED_BOTH);
+							jV.setVisible(true);
+							
+							setVisible(false);
+							
+						}catch(BarangayClearanceServiceException ex){
+							ex.printStackTrace();
+						}
 					}
 				});
 				okButton.setActionCommand("OK");

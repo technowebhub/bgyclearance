@@ -13,20 +13,28 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+
+import javax.swing.JDialog;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JButton;
+import javax.swing.SwingUtilities;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JMenu;
 import javax.swing.border.LineBorder;
+
 import java.awt.Color;
 import java.awt.GridBagLayout;
+
 
 public class BgyClearanceFrame extends JFrame {
 
@@ -89,9 +97,10 @@ public class BgyClearanceFrame extends JFrame {
 		panel_1.setBorder(new LineBorder(new Color(0, 0, 0)));
 		panel_1.setBounds(6, 105, 788, 447);
 		contentPane.add(panel_1);
-		panel_1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		panel_1.setLayout(null);
 		
 		table = new JTable();
+		table.setBounds(787, 446, -784, -440);
 		panel_1.add(table);
 		
 		JPanel panel_2 = new JPanel();
@@ -103,6 +112,10 @@ public class BgyClearanceFrame extends JFrame {
 		JButton btnNew = new JButton("New");
 		btnNew.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				JDialog newRegistrationDialog = new BgyClearanceRegistrationDialog();
+				newRegistrationDialog.setModal(true);
+				newRegistrationDialog.setLocationRelativeTo(null);
+				newRegistrationDialog.setVisible(true);
 			}
 		});
 		btnNew.setBounds(6, 6, 117, 29);

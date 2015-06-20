@@ -18,14 +18,13 @@ import com.thub.areyes1.obj.BarangayClearance;
 import com.thub.areyes1.obj.BarangayClearanceReport;
 import com.thub.areyes1.service.BarangayClearanceService;
 import com.thub.areyes1.service.BaseService;
+import com.thub.areyes1.util.ReportUtil;
 
+@Service
 public class BarangayClearanceServiceImpl extends BaseService implements BarangayClearanceService {
-
-	private BarangayClearanceDao barangayClearanceDao;
 	
-	{
-		barangayClearanceDao = new DaoFactory().getDao(DaoType.BGY_CLEARANCE_DAO);
-	}
+	@Autowired
+	private BarangayClearanceDao barangayClearanceDao;
 	
 	public BarangayClearance saveClearance(BarangayClearance barangayClearance)
 			throws BarangayClearanceServiceException {
@@ -49,8 +48,15 @@ public class BarangayClearanceServiceImpl extends BaseService implements Baranga
 	public BarangayClearanceReport generateAndSaveBarangayReport(
 			BarangayClearance barangayClearance)
 			throws BarangayClearanceServiceException {
-		// TODO Auto-generated method stub
-		return null;
+		
+		BarangayClearanceReport bgyClearanceRpt = new BarangayClearanceReport();
+		
+		//	Save and Generate Report!
+		//this.saveClearance(barangayClearance);
+		bgyClearanceRpt.setBarangayClearance(barangayClearance);
+		bgyClearanceRpt.setBarangayClearancePrint(ReportUtil.generateJasperPrintReport(barangayClearance));
+	
+		return bgyClearanceRpt;
 	}
 	
 
