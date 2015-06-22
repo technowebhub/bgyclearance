@@ -13,10 +13,46 @@ import com.thub.areyes1.exception.BarangayClearanceServiceException;
 import com.thub.areyes1.obj.BarangayClearance;
 import com.thub.areyes1.obj.BarangayClearanceReport;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Interface BarangayClearanceService.
+ */
 public interface BarangayClearanceService {
+	
+	/**
+	 * Save clearance.
+	 *
+	 * @param barangayClearance the barangay clearance
+	 * @return the barangay clearance
+	 * @throws BarangayClearanceServiceException the barangay clearance service exception
+	 */
 	public BarangayClearance saveClearance(BarangayClearance barangayClearance) throws BarangayClearanceServiceException;
+	
+	/**
+	 * Removes the clearance.
+	 *
+	 * @param barangayClearance the barangay clearance
+	 * @return true, if successful
+	 * @throws BarangayClearanceServiceException the barangay clearance service exception
+	 */
 	public boolean removeClearance(BarangayClearance barangayClearance) throws BarangayClearanceServiceException;
+	
+	/**
+	 * Generate barangay report.
+	 *
+	 * @param barangayClearance the barangay clearance
+	 * @return the barangay clearance report
+	 * @throws BarangayClearanceServiceException the barangay clearance service exception
+	 */
 	public BarangayClearanceReport generateBarangayReport(BarangayClearance barangayClearance) throws BarangayClearanceServiceException;
+	
+	/**
+	 * Generate and save barangay report.
+	 *
+	 * @param barangayClearance the barangay clearance
+	 * @return the barangay clearance report
+	 * @throws BarangayClearanceServiceException the barangay clearance service exception
+	 */
 	public BarangayClearanceReport generateAndSaveBarangayReport(BarangayClearance barangayClearance) throws BarangayClearanceServiceException;
 
 }

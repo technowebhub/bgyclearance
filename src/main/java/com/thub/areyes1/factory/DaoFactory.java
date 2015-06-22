@@ -15,8 +15,17 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.thub.areyes1.dao.BarangayClearanceDao;
 
-
+/**
+ * A factory for creating Dao objects.
+ */
 public class DaoFactory extends Factory {
+	
+	/**
+	 * Gets the dao.
+	 *
+	 * @param daoType the dao type
+	 * @return the dao
+	 */
 	public static BarangayClearanceDao getDao(DaoType daoType){
 		if(daoType.equals(DaoType.BGY_CLEARANCE_DAO)) {
 			return (BarangayClearanceDao)appContext.getBean(BarangayClearanceDao.class);

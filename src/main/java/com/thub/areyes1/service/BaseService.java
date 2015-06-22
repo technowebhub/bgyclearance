@@ -7,6 +7,9 @@
 
 package com.thub.areyes1.service;
 
+/**
+ * The Class BaseService.
+ */
 public abstract class BaseService {
 
 }

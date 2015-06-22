@@ -7,8 +7,15 @@
 
 package com.thub.areyes1.util;
 
+/**
+ * The Class ReportConstants.
+ */
 public final class ReportConstants {
-	public static final String CONST_REPORT_LOCATION = "/report/";
-	public static final String CONST_CLEARANCE_REP = "bgyclearance_report.jasper";
+	
+	/** The Constant CONST_REPORT_LOCATION. */
+	public static final String CONST_REPORT_LOCATION = System.getProperty("REPORT_LOCATION");
+	
+	/** The Constant CONST_CLEARANCE_REP. */
+	public static final String CONST_CLEARANCE_REP = System.getProperty("CLEARANCE_NAME");
 
 }

@@ -20,24 +20,38 @@ import com.thub.areyes1.service.BarangayClearanceService;
 import com.thub.areyes1.service.BaseService;
 import com.thub.areyes1.util.ReportUtil;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class BarangayClearanceServiceImpl.
+ */
 @Service
 public class BarangayClearanceServiceImpl extends BaseService implements BarangayClearanceService {
 	
+	/** The barangay clearance dao. */
 	@Autowired
 	private BarangayClearanceDao barangayClearanceDao;
 	
+	/* (non-Javadoc)
+	 * @see com.thub.areyes1.service.BarangayClearanceService#saveClearance(com.thub.areyes1.obj.BarangayClearance)
+	 */
 	public BarangayClearance saveClearance(BarangayClearance barangayClearance)
 			throws BarangayClearanceServiceException {
 		// TODO Auto-generated method stub
 		return this.barangayClearanceDao.saveClearance(barangayClearance);
 	}
 
+	/* (non-Javadoc)
+	 * @see com.thub.areyes1.service.BarangayClearanceService#removeClearance(com.thub.areyes1.obj.BarangayClearance)
+	 */
 	public boolean removeClearance(BarangayClearance barangayClearance)
 			throws BarangayClearanceServiceException {
 		// TODO Auto-generated method stub
 		return this.barangayClearanceDao.removeClearance(barangayClearance);
 	}
 
+	/* (non-Javadoc)
+	 * @see com.thub.areyes1.service.BarangayClearanceService#generateBarangayReport(com.thub.areyes1.obj.BarangayClearance)
+	 */
 	public BarangayClearanceReport generateBarangayReport(
 			BarangayClearance barangayClearance)
 			throws BarangayClearanceServiceException {
@@ -45,6 +59,9 @@ public class BarangayClearanceServiceImpl extends BaseService implements Baranga
 		return null;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.thub.areyes1.service.BarangayClearanceService#generateAndSaveBarangayReport(com.thub.areyes1.obj.BarangayClearance)
+	 */
 	public BarangayClearanceReport generateAndSaveBarangayReport(
 			BarangayClearance barangayClearance)
 			throws BarangayClearanceServiceException {

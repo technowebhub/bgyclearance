@@ -12,11 +12,16 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
+/**
+ * The Class Factory.
+ */
 @Configuration
 @ComponentScan(basePackages = {
 		"com.thub.areyes1.dao",
 		"com.thub.areyes1.service"})
 public abstract class Factory {
+	
+	/** The app context. */
 	public static AnnotationConfigApplicationContext appContext;
 	static {
 		Factory.appContext = new AnnotationConfigApplicationContext(Factory.class);

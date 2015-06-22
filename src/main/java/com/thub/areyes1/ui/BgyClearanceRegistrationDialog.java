@@ -15,6 +15,7 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.AbstractButton;
 import javax.swing.ButtonGroup;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
@@ -30,36 +31,77 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.thub.areyes1.exception.BarangayClearanceServiceException;
+import com.thub.areyes1.exception.BarangayClearanceValidationException;
 import com.thub.areyes1.factory.ServiceFactory;
 import com.thub.areyes1.factory.ServiceType;
 import com.thub.areyes1.obj.BarangayClearance;
+import com.thub.areyes1.obj.BarangayClearanceType;
 import com.thub.areyes1.service.BarangayClearanceService;
 
 import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.security.acl.Owner;
+import java.util.Enumeration;
 
+/**
+ * The Class BgyClearanceRegistrationDialog.
+ */
 @Component
 public class BgyClearanceRegistrationDialog extends JDialog {
 	
+	/** The Constant serialVersionUID. */
+	private static final long serialVersionUID = -7041948224506007761L;
+
+	/** The barangay clearance service. */
 	private BarangayClearanceService barangayClearanceService = ServiceFactory.getService(ServiceType.BGY_CLEARANCE_SERVICE); 
 	
+	/** The barangay clearance. */
 	private BarangayClearance barangayClearance =new BarangayClearance();
+	
+	/** The content panel. */
 	private final JPanel contentPanel = new JPanel();
+	
+	/** The business name txt. */
 	private JTextField businessNameTxt;
+	
+	/** The address txt. */
 	private JTextField addressTxt;
+	
+	/** The type of activity txt. */
 	private JTextField typeOfActivityTxt;
+	
+	/** The capitalization txt. */
 	private JTextField capitalizationTxt;
+	
+	/** The manager operator txt. */
 	private JTextField managerOperatorTxt;
+	
+	/** The control number txt. */
 	private JTextField controlNumberTxt;
+	
+	/** The applicant member of txt. */
 	private JTextField applicantMemberOfTxt;
+	
+	/** The assoc home owner txt. */
 	private JTextField assocHomeOwnerTxt;
+	
+	/** The amount paid. */
 	private JTextField amountPaid;
+	
+	/** The or number. */
 	private JTextField orNumber;
+	
+	/** The second end no. */
 	private JTextField secondEndNo;
+	
+	private JRadioButton rdbtnNew;
+	private JRadioButton rdbtnRenewal;
 
 	/**
 	 * Launch the application.
+	 *
+	 * @param args the arguments
 	 */
 	public static void main(String[] args) {
 		try {
@@ -90,11 +132,11 @@ public class BgyClearanceRegistrationDialog extends JDialog {
 		tabbedPane.addTab("Registration", null, panel, null);
 		panel.setLayout(null);
 		
-		JRadioButton rdbtnNew = new JRadioButton("New");
+		rdbtnNew = new JRadioButton("New");
 		rdbtnNew.setBounds(6, 6, 94, 23);
 		panel.add(rdbtnNew);
 		
-		JRadioButton rdbtnRenewal = new JRadioButton("Renewal");
+		rdbtnRenewal = new JRadioButton("Renewal");
 		rdbtnRenewal.setBounds(83, 6, 94, 23);
 		panel.add(rdbtnRenewal);
 		
@@ -240,6 +282,7 @@ public class BgyClearanceRegistrationDialog extends JDialog {
 		secondEndNo.setBounds(94, 0, 366, 28);
 		panel_3.add(secondEndNo);
 		secondEndNo.setColumns(10);
+		
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
@@ -252,31 +295,45 @@ public class BgyClearanceRegistrationDialog extends JDialog {
 						//	Validation first.
 						validateForm();
 						
-						//	Then we put it on the clearance object.
-						barangayClearance.setBusinessName(businessNameTxt.getText());
-						barangayClearance.setCapitalization(capitalizationTxt.getText());
-						barangayClearance.setAssocHomeOwnerPresident(assocHomeOwnerTxt.getText());
-						barangayClearance.setApplicantMemberOf(applicantMemberOfTxt.getText());
-						barangayClearance.setAmountPaid(
-								Float.valueOf((amountPaid.getText().equals("") ? "0" : amountPaid.getText())));
-						barangayClearance.setAddress(addressTxt.getText());
-						
-						//	Save Report.
-						try{
+						try {
+							//	Then we put it on the clearance object.
+							barangayClearance.setApplicantMemberOf(applicantMemberOfTxt.getText());
+							barangayClearance.setAddress(addressTxt.getText());
+							barangayClearance.setBusinessName(businessNameTxt.getText());
+							barangayClearance.setCapitalization(capitalizationTxt.getText());
+							barangayClearance.setAssocHomeOwnerPresident(assocHomeOwnerTxt.getText());
+							barangayClearance.setApplicantMemberOf(applicantMemberOfTxt.getText());
+							barangayClearance.setAmountPaid(
+									Float.valueOf((amountPaid.getText().equals("") ? "0" : amountPaid.getText())));
+							barangayClearance.setAddress(addressTxt.getText());
+							barangayClearance.setControlNumber(Integer.valueOf((controlNumberTxt.getText().equals("") ? "0" : controlNumberTxt.getText())));
+							barangayClearance.setOwnership(businessNameTxt.getText());
+							barangayClearance.setTypeOfBusiness(typeOfActivityTxt.getText());
+							
+							if(rdbtnNew.isSelected()) {
+								barangayClearance.setBarangayClearanceType(BarangayClearanceType.NEW);
+							}else if(rdbtnRenewal.isSelected()) {
+								barangayClearance.setBarangayClearanceType(BarangayClearanceType.RENEWAL);
+							}
 							
 							JasperViewer jV = new JasperViewer(barangayClearanceService
 									.generateAndSaveBarangayReport(barangayClearance)
-									.getBarangayClearancePrint());
+									.getBarangayClearancePrint(),false);
 							jV.setTitle("Barangay Clearance Report");
 							jV.setAlwaysOnTop(true);
 							jV.setExtendedState(JasperViewer.MAXIMIZED_BOTH);
+							jV.setDefaultCloseOperation(HIDE_ON_CLOSE);
 							jV.setVisible(true);
-							
 							setVisible(false);
 							
-						}catch(BarangayClearanceServiceException ex){
+						}catch(BarangayClearanceValidationException ex){
+							javax.swing.JOptionPane.showMessageDialog(getParent(), ex.getMessage());
 							ex.printStackTrace();
 						}
+						catch(BarangayClearanceServiceException svc) {
+							svc.printStackTrace();
+						}
+
 					}
 				});
 				okButton.setActionCommand("OK");
@@ -291,9 +348,12 @@ public class BgyClearanceRegistrationDialog extends JDialog {
 		}
 	}
 	
-	private String validateForm() {
-		
-		return "";
-		
+	/**
+	 * Validate form.
+	 *
+	 * @return true, if successful
+	 */
+	private boolean validateForm() {
+		return true;
 	}
 }

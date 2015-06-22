@@ -7,6 +7,9 @@
 
 package com.thub.areyes1.obj;
 
+/**
+ * The Class SearchFilter.
+ */
 public class SearchFilter {
 
 }

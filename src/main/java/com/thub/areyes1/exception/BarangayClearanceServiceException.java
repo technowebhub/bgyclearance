@@ -7,6 +7,9 @@
 
 package com.thub.areyes1.exception;
 
+/**
+ * The Class BarangayClearanceServiceException.
+ */
 public class BarangayClearanceServiceException extends Exception{
 
 }

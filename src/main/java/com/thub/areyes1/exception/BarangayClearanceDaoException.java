@@ -7,6 +7,9 @@
 
 package com.thub.areyes1.exception;
 
+/**
+ * The Class BarangayClearanceDaoException.
+ */
 public class BarangayClearanceDaoException extends Exception	{
 
 }

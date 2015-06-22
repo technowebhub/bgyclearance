@@ -36,14 +36,25 @@ import java.awt.Color;
 import java.awt.GridBagLayout;
 
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class BgyClearanceFrame.
+ */
 public class BgyClearanceFrame extends JFrame {
 
+	/** The content pane. */
 	private JPanel contentPane;
+	
+	/** The table. */
 	private JTable table;
+	
+	/** The text field. */
 	private JTextField textField;
 
 	/**
 	 * Launch the application.
+	 *
+	 * @param args the arguments
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {

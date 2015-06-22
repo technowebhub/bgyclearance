@@ -6,9 +6,12 @@
  */
 
 package com.thub.areyes1.factory;
-
+/**
+ * The Enum DaoType.
+ */
 public enum DaoType {
 	
+	/** The bgy clearance dao. */
 	BGY_CLEARANCE_DAO;
 
 }

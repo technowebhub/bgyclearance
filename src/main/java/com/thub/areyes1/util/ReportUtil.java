@@ -24,6 +24,7 @@ import com.thub.areyes1.obj.BarangayClearance;
 
 import static com.thub.areyes1.util.ReportConstants.*;
 
+// TODO: Auto-generated Javadoc
 /**
  * This class is the utility class to generate jasper reports.
  * @author alvinreyes
@@ -34,7 +35,8 @@ public class ReportUtil {
 	
 	/**
 	 * This method is used to call the generate the report and initialize the report viewer.
-	 * @param bgyClearance
+	 *
+	 * @param bgyClearance the bgy clearance
 	 */
 	public static void generateReport(BarangayClearance bgyClearance) {
 		
@@ -63,24 +65,20 @@ public class ReportUtil {
 	 * 
 	 * example:
 	 *  JFrame frame = new JFrame("Report");
-	 *	frame.getContentPane().add(new JRViewer(jasperPrint));
+	 * 	frame.getContentPane().add(new JRViewer(jasperPrint));
 	 *  frame.pack();
-	 *	frame.setVisible(true);
+	 * 	frame.setVisible(true);
 	 *
-	 * @param bgyClearance
-	 * @return
+	 * @param bgyClearance the bgy clearance
+	 * @return the jasper print
 	 */
 	public static JasperPrint generateJasperPrintReport(BarangayClearance bgyClearance) {
 		
 		try {
 			FileInputStream fis = new FileInputStream(ReportUtil.class.getResource(CONST_REPORT_LOCATION + CONST_CLEARANCE_REP).getFile());
             BufferedInputStream bufferedInputStream = new BufferedInputStream(fis);
-            
-            Map<String,Object> map = new HashMap<String, Object>();
-            map.put("SAMPLE1", "1212");
-            map.put("address", "1212");
 			JasperReport jasperReport = (JasperReport) JRLoader.loadObject(bufferedInputStream);
-			JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, map, new JREmptyDataSource());
+			JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, bgyClearance.getData(), new JREmptyDataSource());
 			
 			return jasperPrint;
 		      

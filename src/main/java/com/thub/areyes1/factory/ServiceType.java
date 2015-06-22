@@ -7,8 +7,12 @@
 
 package com.thub.areyes1.factory;
 
+/**
+ * The Enum ServiceType.
+ */
 public enum ServiceType {
 	
+	/** The bgy clearance service. */
 	BGY_CLEARANCE_SERVICE;
 
 }

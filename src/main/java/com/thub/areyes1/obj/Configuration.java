@@ -7,6 +7,9 @@
 
 package com.thub.areyes1.obj;
 
+/**
+ * The Class Configuration.
+ */
 public class Configuration {
 
 }
