@@ -20,7 +20,6 @@ import com.thub.areyes1.service.BarangayClearanceService;
 import com.thub.areyes1.service.BaseService;
 import com.thub.areyes1.util.ReportUtil;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class BarangayClearanceServiceImpl.
  */
@@ -69,7 +68,7 @@ public class BarangayClearanceServiceImpl extends BaseService implements Baranga
 		BarangayClearanceReport bgyClearanceRpt = new BarangayClearanceReport();
 		
 		//	Save and Generate Report!
-		//this.saveClearance(barangayClearance);
+		this.saveClearance(barangayClearance);
 		bgyClearanceRpt.setBarangayClearance(barangayClearance);
 		bgyClearanceRpt.setBarangayClearancePrint(ReportUtil.generateJasperPrintReport(barangayClearance));
 	

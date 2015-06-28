@@ -22,26 +22,27 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JButton;
-import javax.swing.SwingUtilities;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JMenu;
 import javax.swing.border.LineBorder;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import java.awt.Color;
-import java.awt.GridBagLayout;
 
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class BgyClearanceFrame.
  */
+@Component
 public class BgyClearanceFrame extends JFrame {
 
+	@Autowired
+	private JDialog bgyClearanceDialog;
+	
 	/** The content pane. */
 	private JPanel contentPane;
 	
@@ -62,6 +63,7 @@ public class BgyClearanceFrame extends JFrame {
 				try {
 					BgyClearanceFrame frame = new BgyClearanceFrame();
 					frame.setVisible(true);
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -123,7 +125,9 @@ public class BgyClearanceFrame extends JFrame {
 		JButton btnNew = new JButton("New");
 		btnNew.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				JDialog newRegistrationDialog = new BgyClearanceRegistrationDialog();
+				//JDialog newRegistrationDialog = new BgyClearanceRegistrationDialog();
+				JDialog newRegistrationDialog = bgyClearanceDialog;
+				
 				newRegistrationDialog.setModal(true);
 				newRegistrationDialog.setLocationRelativeTo(null);
 				newRegistrationDialog.setVisible(true);

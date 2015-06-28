@@ -15,7 +15,7 @@ public enum BarangayClearanceType {
 	
 	/** The new. */
 	NEW ("New"),/** The renewal. */
-RENEWAL ("Renewal");
+	RENEWAL ("Renewal");
 	
 	
 	/** The name. */

@@ -54,7 +54,9 @@ public class BgyClearanceRegistrationDialog extends JDialog {
 	private static final long serialVersionUID = -7041948224506007761L;
 
 	/** The barangay clearance service. */
-	private BarangayClearanceService barangayClearanceService = ServiceFactory.getService(ServiceType.BGY_CLEARANCE_SERVICE); 
+	//private BarangayClearanceService barangayClearanceService = ServiceFactory.getService(ServiceType.BGY_CLEARANCE_SERVICE);
+	@Autowired
+	private BarangayClearanceService barangayClearanceService;// = ServiceFactory.getService(ServiceType.BGY_CLEARANCE_SERVICE);
 	
 	/** The barangay clearance. */
 	private BarangayClearance barangayClearance =new BarangayClearance();

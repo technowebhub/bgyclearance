@@ -12,19 +12,26 @@ import javax.swing.JFrame;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.Configuration;
+
+import com.thub.areyes1.config.AppConfig;
 import com.thub.areyes1.ui.BgyClearanceFrame;
 
 /**
  * The Class BarangayClearanceMain.
  */
+@Configuration
 public class BarangayClearanceMain {
 
 	/**
 	 * The main BarangayClearanceMain constructor.
 	 */
 	public BarangayClearanceMain() {
-		
-		JFrame bgyClearanceFrame = new BgyClearanceFrame();
+		AnnotationConfigApplicationContext appCtx = new AnnotationConfigApplicationContext(AppConfig.class);
+		JFrame bgyClearanceFrame = appCtx.getBean(BgyClearanceFrame.class);
 		bgyClearanceFrame.setLocationByPlatform(true);
 		bgyClearanceFrame.setLocationRelativeTo(null);
 		bgyClearanceFrame.setVisible(true);

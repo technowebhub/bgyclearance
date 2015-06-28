@@ -7,7 +7,6 @@
 
 package com.thub.areyes1.factory;
 
-import org.springframework.config.java.context.JavaConfigApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;

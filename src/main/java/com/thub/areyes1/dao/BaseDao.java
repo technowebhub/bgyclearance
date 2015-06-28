@@ -7,33 +7,33 @@
 
 package com.thub.areyes1.dao;
 
+import java.sql.Connection;
+import java.sql.SQLException;
+
+import javax.annotation.Resource;
+import javax.inject.Inject;
 import javax.sql.DataSource;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 /**
  * The Class BaseDao.
  */
-public abstract class BaseDao {
+@Repository
+public class BaseDao {
 	
-	/** The jdbc template. */
-	private JdbcTemplate jdbcTemplate;
-	
-	/**
-	 * Gets the jdbc template.
-	 *
-	 * @return the jdbc template
-	 */
-	public JdbcTemplate getJdbcTemplate(){
-		return this.jdbcTemplate;
-	}
-	
-	/**
-	 * Sets the data source.
-	 *
-	 * @param dataSource the new data source
-	 */
+	public DataSource dataSource;
+	@Autowired
 	public void setDataSource(DataSource dataSource) {
-		this.jdbcTemplate = new JdbcTemplate(dataSource);
+		this.dataSource = dataSource;
 	}
+
+	public Connection getConnection() throws  SQLException {
+		return this.dataSource.getConnection();
+	}
+	
 }
