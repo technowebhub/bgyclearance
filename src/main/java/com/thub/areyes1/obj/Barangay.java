@@ -7,6 +7,7 @@
 
 package com.thub.areyes1.obj;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class Barangay.
  */

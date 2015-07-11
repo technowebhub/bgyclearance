@@ -20,18 +20,32 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class BaseDao.
  */
 @Repository
 public class BaseDao {
 	
+	/** The data source. */
 	public DataSource dataSource;
+	
+	/**
+	 * Sets the data source.
+	 *
+	 * @param dataSource the new data source
+	 */
 	@Autowired
 	public void setDataSource(DataSource dataSource) {
 		this.dataSource = dataSource;
 	}
 
+	/**
+	 * Gets the connection.
+	 *
+	 * @return the connection
+	 * @throws SQLException the SQL exception
+	 */
 	public Connection getConnection() throws  SQLException {
 		return this.dataSource.getConnection();
 	}

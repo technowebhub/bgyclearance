@@ -7,14 +7,45 @@
 
 package com.thub.areyes1.dao;
 
+import java.util.List;
+
 import com.thub.areyes1.exception.BarangayClearanceServiceException;
+import com.thub.areyes1.obj.Barangay;
 import com.thub.areyes1.obj.BarangayClearance;
 import com.thub.areyes1.obj.BarangayClearanceReport;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Interface BarangayClearanceDao.
  */
 public interface BarangayClearanceDao {
+	
+	/**
+	 * Gets the barangay clearance data.
+	 *
+	 * @param id the id
+	 * @return the barangay clearance data
+	 * @throws BarangayClearanceServiceException the barangay clearance service exception
+	 */
+	public BarangayClearance getBarangayClearanceData(int id) throws BarangayClearanceServiceException;
+	
+	/**
+	 * Gets the all barangay clearance in range.
+	 *
+	 * @param from the from
+	 * @param to the to
+	 * @return the all barangay clearance in range
+	 * @throws BarangayClearanceServiceException the barangay clearance service exception
+	 */
+	public List<BarangayClearance> getAllBarangayClearanceInRange(int from, int to) throws BarangayClearanceServiceException;
+	
+	/**
+	 * Gets the all barangay clearance.
+	 *
+	 * @return the all barangay clearance
+	 * @throws BarangayClearanceServiceException the barangay clearance service exception
+	 */
+	public List<BarangayClearance> getAllBarangayClearance() throws BarangayClearanceServiceException;
 	
 	/**
 	 * Save clearance.

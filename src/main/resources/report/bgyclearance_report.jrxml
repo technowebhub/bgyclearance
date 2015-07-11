@@ -3,8 +3,21 @@
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
-	<parameter name="SAMPLE1" class="java.lang.String"/>
-	<parameter name="SAMPLE2" class="java.lang.String"/>
+	<property name="ireport.background.image.properties" value="true,true,0.25,-8,-8,0,0,528,528"/>
+	<parameter name="BUSINESS_NAME" class="java.lang.String"/>
+	<parameter name="ADDRESS" class="java.lang.String"/>
+	<parameter name="CLEARANCE_TYPE" class="java.lang.String"/>
+	<parameter name="TYPE_OF_BUSINESS" class="java.lang.String"/>
+	<parameter name="BUILDING_TYPE" class="java.lang.String"/>
+	<parameter name="CAPITALIZATION" class="java.lang.String"/>
+	<parameter name="OWNERSHIP" class="java.lang.String"/>
+	<parameter name="ASSOC_HOME_OWNER_PRESIDENT" class="java.lang.String"/>
+	<parameter name="APPLICANT_MEMBER_OF" class="java.lang.String"/>
+	<parameter name="SECOND_ENDORSMENT_NUMBER" class="java.lang.String"/>
+	<parameter name="OR_NUMBER" class="java.lang.String"/>
+	<parameter name="AMOUNT_PAID" class="java.lang.String"/>
+	<parameter name="CONTROL_NUMBER" class="java.lang.String"/>
+	<parameter name="BARANGAY" class="java.lang.String"/>
 	<field name="field1" class="java.lang.String"/>
 	<variable name="field1_1" class="java.lang.Integer" calculation="Count">
 		<variableExpression><![CDATA[$F{field1}]]></variableExpression>
@@ -22,20 +35,60 @@
 				<reportElement x="376" y="55" width="100" height="20" uuid="e4a1d599-2bbf-4884-80e5-8997c555b16d"/>
 				<text><![CDATA[BBB]]></text>
 			</staticText>
+			<textField>
+				<reportElement x="453" y="23" width="100" height="20" uuid="2d540712-b609-4dbb-bead-b21284b4d180"/>
+				<textFieldExpression><![CDATA[$P{OR_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="36" y="38" width="146" height="20" uuid="442b9fa7-1e4a-4f9e-8876-8bf7ded8fb39"/>
+				<textFieldExpression><![CDATA[$P{CONTROL_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="248" y="23" width="100" height="20" uuid="4eb8c55c-9e85-448b-848e-a752cf8ec574"/>
+				<textFieldExpression><![CDATA[$P{BARANGAY}]]></textFieldExpression>
+			</textField>
 		</band>
 	</title>
 	<pageHeader>
 		<band height="35" splitType="Stretch"/>
 	</pageHeader>
 	<detail>
-		<band height="125" splitType="Stretch">
+		<band height="151" splitType="Stretch">
 			<textField>
-				<reportElement x="18" y="19" width="100" height="20" uuid="1d29ffe4-26cd-44e1-9406-a1b48a9faefc"/>
-				<textFieldExpression><![CDATA[$P{SAMPLE1}]]></textFieldExpression>
+				<reportElement x="11" y="17" width="100" height="20" uuid="2d36f703-9ad9-4cad-ab76-bbf98042d384"/>
+				<textFieldExpression><![CDATA[$P{BUSINESS_NAME}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="18" y="49" width="100" height="20" uuid="678421bc-9a89-41e5-a7ee-a8cc63282a15"/>
-				<textFieldExpression><![CDATA[$P{SAMPLE2}]]></textFieldExpression>
+				<reportElement x="11" y="55" width="100" height="20" uuid="c7df79ec-5adb-4549-8aa6-b455f4610cfc"/>
+				<textFieldExpression><![CDATA[$P{ADDRESS}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="338" y="17" width="159" height="20" uuid="3e549618-e908-4a2b-8c31-ef78ee82120b"/>
+				<textFieldExpression><![CDATA[$P{TYPE_OF_BUSINESS}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="265" y="57" width="100" height="20" uuid="8e7f2d78-5c84-4b79-9ab8-422967b112fd"/>
+				<textFieldExpression><![CDATA[$P{BUILDING_TYPE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="208" y="98" width="100" height="20" uuid="69e2dd31-6216-4e8e-a9c2-2351c77ac6c6"/>
+				<textFieldExpression><![CDATA[$P{CAPITALIZATION}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="473" y="83" width="100" height="20" uuid="f11c7b67-0974-4606-837f-bb129987f6db"/>
+				<textFieldExpression><![CDATA[$P{OWNERSHIP}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="98" width="208" height="20" uuid="749e55b7-88e3-48d0-9279-e9312a3e08e6"/>
+				<textFieldExpression><![CDATA[$P{ASSOC_HOME_OWNER_PRESIDENT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="338" y="118" width="201" height="20" uuid="b3dcc145-9c81-4909-a34d-ea22c85d7d6d"/>
+				<textFieldExpression><![CDATA[$P{SECOND_ENDORSMENT_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="112" y="131" width="100" height="20" uuid="c97ad50f-60fa-4edc-b01c-2b7300708959"/>
+				<textFieldExpression><![CDATA[$P{AMOUNT_PAID}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

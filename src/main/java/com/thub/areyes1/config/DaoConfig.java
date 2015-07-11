@@ -12,6 +12,9 @@ import org.springframework.context.annotation.Configuration;
 
 import com.thub.areyes1.dao.impl.BarangayClearanceDaoImpl;
 
+/**
+ * The Class DaoConfig.
+ */
 @Configuration
 @ComponentScan(basePackageClasses = {BarangayClearanceDaoImpl.class})
 public class DaoConfig {

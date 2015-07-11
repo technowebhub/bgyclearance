@@ -7,13 +7,14 @@
 
 package com.thub.areyes1.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.thub.areyes1.exception.BarangayClearanceServiceException;
 import com.thub.areyes1.obj.BarangayClearance;
 import com.thub.areyes1.obj.BarangayClearanceReport;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Interface BarangayClearanceService.
  */
@@ -54,5 +55,13 @@ public interface BarangayClearanceService {
 	 * @throws BarangayClearanceServiceException the barangay clearance service exception
 	 */
 	public BarangayClearanceReport generateAndSaveBarangayReport(BarangayClearance barangayClearance) throws BarangayClearanceServiceException;
+	
+	/**
+	 * Gets all the Barangay Clearance
+	 * @return
+	 * @throws BarangayClearanceServiceException
+	 */
+	public List<BarangayClearance> getAllBarangayClearance() throws BarangayClearanceServiceException;
+	public BarangayClearance getBarangayClearanceData(int id) throws BarangayClearanceServiceException;
 
 }

@@ -10,9 +10,7 @@ package com.thub.areyes1.obj;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-
 import com.thub.areyes1.exception.BarangayClearanceValidationException;
-
 /**
  * The Class BarangayClearance.
  */
@@ -66,6 +64,93 @@ public class BarangayClearance {
 	/** The amount paid. */
 	private Float amountPaid;
 	
+	private boolean owned;
+	private boolean rented;
+	private boolean corporation;
+	private boolean singleProprietorship;
+	private boolean parntership;
+	private boolean others;
+	private boolean forNew;
+	private boolean forRenewal;
+	
+	public boolean isForNew() {
+		return forNew;
+	}
+
+	public void setForNew(boolean forNew) {
+		if(forNew) {this.data.put("FORNEW","Y");
+		}else {this.data.put("FORNEW","N");}
+		this.forNew = forNew;
+	}
+
+	public boolean isForRenewal() {
+		return forRenewal;
+	}
+
+	public void setForRenewal(boolean forRenewal) {
+		if(forRenewal) {this.data.put("FORRENEWAL","Y");
+		}else {this.data.put("FORRENEWAL","N");}
+		this.forRenewal = forRenewal;
+	}
+
+	public boolean isOwned() {
+		return owned;
+	}
+
+	public void setOwned(boolean owned) {
+		if(owned) {this.data.put("OWNED","Y");
+		}else {this.data.put("OWNED","N");}
+		this.owned = owned;
+	}
+
+	public boolean isRented() {
+		return rented;
+	}
+
+	public void setRented(boolean rented) {
+		if(rented) {this.data.put("RENTED","Y");
+		}else {this.data.put("RENTED","N");}
+		this.rented = rented;
+	}
+
+	public boolean isCorporation() {
+		return corporation;
+	}
+
+	public void setCorporation(boolean corporation) {
+		if(corporation) {this.data.put("CORPORATION","Y");
+		}else {this.data.put("CORPORATION","N");}
+		this.corporation = corporation;
+	}
+
+	public boolean isSingleProprietorship() {
+		return singleProprietorship;
+	}
+
+	public void setSingleProprietorship(boolean singleProprietorship) {
+		if(singleProprietorship) {this.data.put("SINGLEPROP","Y");
+		}else {this.data.put("SINGLEPROP","N");}
+		this.singleProprietorship = singleProprietorship;
+	}
+
+	public boolean isParntership() {
+		return parntership;
+	}
+
+	public void setParntership(boolean parntership) {
+		if(parntership) {this.data.put("PARTNERSHIP","Y");
+		}else {this.data.put("PARTNERSHIP","N");}
+		this.parntership = parntership;
+	}
+
+	public boolean isOthers() {
+		return others;
+	}
+
+	public void setOthers(boolean others) {
+		this.others = others;
+	}
+
 	/** The data. */
 	private Map<String,Object> data = new HashMap<String, Object>();
 	
@@ -100,6 +185,7 @@ public class BarangayClearance {
 	 * Sets the barangay clearance type.
 	 *
 	 * @param barangayClearanceType the new barangay clearance type
+	 * @throws BarangayClearanceValidationException the barangay clearance validation exception
 	 */
 	public void setBarangayClearanceType(BarangayClearanceType barangayClearanceType) throws BarangayClearanceValidationException {
 		
@@ -123,6 +209,7 @@ public class BarangayClearance {
 	 * Sets the current date.
 	 *
 	 * @param currentDate the new current date
+	 * @throws BarangayClearanceValidationException the barangay clearance validation exception
 	 */
 	public void setCurrentDate(Date currentDate) throws BarangayClearanceValidationException {
 		if(currentDate.equals("")) {
@@ -145,6 +232,7 @@ public class BarangayClearance {
 	 * Sets the business name.
 	 *
 	 * @param businessName the new business name
+	 * @throws BarangayClearanceValidationException the barangay clearance validation exception
 	 */
 	public void setBusinessName(String businessName) throws BarangayClearanceValidationException {
 		this.data.put("BUSINESS_NAME",businessName);
@@ -164,6 +252,7 @@ public class BarangayClearance {
 	 * Sets the address.
 	 *
 	 * @param address the new address
+	 * @throws BarangayClearanceValidationException the barangay clearance validation exception
 	 */
 	public void setAddress(String address) throws BarangayClearanceValidationException{
 		this.data.put("ADDRESS",address);
@@ -183,6 +272,7 @@ public class BarangayClearance {
 	 * Sets the type of business.
 	 *
 	 * @param typeOfBusiness the new type of business
+	 * @throws BarangayClearanceValidationException the barangay clearance validation exception
 	 */
 	public void setTypeOfBusiness(String typeOfBusiness) throws BarangayClearanceValidationException{
 		this.data.put("TYPE_OF_BUSINESS",typeOfBusiness);
@@ -202,6 +292,7 @@ public class BarangayClearance {
 	 * Sets the building type.
 	 *
 	 * @param buildingType the new building type
+	 * @throws BarangayClearanceValidationException the barangay clearance validation exception
 	 */
 	public void setBuildingType(BuildingType buildingType) throws BarangayClearanceValidationException {
 		this.data.put("BUILDING_TYPE",buildingType);
@@ -221,6 +312,7 @@ public class BarangayClearance {
 	 * Sets the capitalization.
 	 *
 	 * @param capitalization the new capitalization
+	 * @throws BarangayClearanceValidationException the barangay clearance validation exception
 	 */
 	public void setCapitalization(String capitalization) throws BarangayClearanceValidationException{
 		this.data.put("CAPITALIZATION",capitalization);
@@ -240,6 +332,7 @@ public class BarangayClearance {
 	 * Sets the ownership.
 	 *
 	 * @param ownership the new ownership
+	 * @throws BarangayClearanceValidationException the barangay clearance validation exception
 	 */
 	public void setOwnership(String ownership) throws BarangayClearanceValidationException{
 		this.data.put("OWNERSHIP",ownership);
@@ -259,6 +352,7 @@ public class BarangayClearance {
 	 * Sets the assoc home owner president.
 	 *
 	 * @param assocHomeOwnerPresident the new assoc home owner president
+	 * @throws BarangayClearanceValidationException the barangay clearance validation exception
 	 */
 	public void setAssocHomeOwnerPresident(String assocHomeOwnerPresident) throws BarangayClearanceValidationException {
 		this.data.put("ASSOC_HOME_OWNER_PRESIDENT",assocHomeOwnerPresident);
@@ -278,6 +372,7 @@ public class BarangayClearance {
 	 * Sets the applicant member of.
 	 *
 	 * @param applicantMemberOf the new applicant member of
+	 * @throws BarangayClearanceValidationException the barangay clearance validation exception
 	 */
 	public void setApplicantMemberOf(String applicantMemberOf) throws BarangayClearanceValidationException{
 		this.data.put("APPLICANT_MEMBER_OF",applicantMemberOf);
@@ -297,6 +392,7 @@ public class BarangayClearance {
 	 * Sets the second endorsment number.
 	 *
 	 * @param secondEndorsmentNumber the new second endorsment number
+	 * @throws BarangayClearanceValidationException the barangay clearance validation exception
 	 */
 	public void setSecondEndorsmentNumber(Integer secondEndorsmentNumber) throws BarangayClearanceValidationException{
 		this.data.put("SECOND_ENDORSMENT_NUMBER",secondEndorsmentNumber);
@@ -316,6 +412,7 @@ public class BarangayClearance {
 	 * Sets the or number.
 	 *
 	 * @param orNumber the new or number
+	 * @throws BarangayClearanceValidationException the barangay clearance validation exception
 	 */
 	public void setOrNumber(Integer orNumber) throws BarangayClearanceValidationException{
 		this.data.put("OR_NUMBER",orNumber);
@@ -335,6 +432,7 @@ public class BarangayClearance {
 	 * Sets the amount paid.
 	 *
 	 * @param amountPaid the new amount paid
+	 * @throws BarangayClearanceValidationException the barangay clearance validation exception
 	 */
 	public void setAmountPaid(Float amountPaid) throws BarangayClearanceValidationException {
 		this.data.put("AMOUNT_PAID",amountPaid);
@@ -354,6 +452,7 @@ public class BarangayClearance {
 	 * Sets the barangay.
 	 *
 	 * @param barangay the new barangay
+	 * @throws BarangayClearanceValidationException the barangay clearance validation exception
 	 */
 	public void setBarangay(Barangay barangay) throws BarangayClearanceValidationException {
 		this.data.put("BARANGAY",barangay);
@@ -373,6 +472,7 @@ public class BarangayClearance {
 	 * Sets the control number.
 	 *
 	 * @param controlNumber the new control number
+	 * @throws BarangayClearanceValidationException the barangay clearance validation exception
 	 */
 	public void setControlNumber(Integer controlNumber) throws BarangayClearanceValidationException {
 		this.data.put("CONTROL_NUMBER",controlNumber);

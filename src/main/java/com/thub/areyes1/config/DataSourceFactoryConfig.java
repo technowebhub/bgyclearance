@@ -14,10 +14,20 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import com.thub.areyes1.dao.BaseDao;
+// TODO: Auto-generated Javadoc
+
+/**
+ * The Class DataSourceFactoryConfig.
+ */
 @Configuration
 @ComponentScan(basePackageClasses = {BaseDao.class})
 public class DataSourceFactoryConfig {
 	
+	/**
+	 * Gets the data source.
+	 *
+	 * @return the data source
+	 */
 	@Bean(name="dataSource")
 	public DataSource getDataSource() {
 		DriverManagerDataSource dm = new DriverManagerDataSource();

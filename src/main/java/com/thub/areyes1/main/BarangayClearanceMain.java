@@ -31,10 +31,11 @@ public class BarangayClearanceMain {
 	 */
 	public BarangayClearanceMain() {
 		AnnotationConfigApplicationContext appCtx = new AnnotationConfigApplicationContext(AppConfig.class);
-		JFrame bgyClearanceFrame = appCtx.getBean(BgyClearanceFrame.class);
+		BgyClearanceFrame bgyClearanceFrame = appCtx.getBean(BgyClearanceFrame.class);
 		bgyClearanceFrame.setLocationByPlatform(true);
 		bgyClearanceFrame.setLocationRelativeTo(null);
 		bgyClearanceFrame.setVisible(true);
+		bgyClearanceFrame.getAllBgyClearances();
 		
 	}
 	

@@ -7,13 +7,13 @@
 
 package com.thub.areyes1.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.thub.areyes1.dao.BarangayClearanceDao;
 import com.thub.areyes1.exception.BarangayClearanceServiceException;
-import com.thub.areyes1.factory.DaoFactory;
-import com.thub.areyes1.factory.DaoType;
 import com.thub.areyes1.obj.BarangayClearance;
 import com.thub.areyes1.obj.BarangayClearanceReport;
 import com.thub.areyes1.service.BarangayClearanceService;
@@ -74,6 +74,19 @@ public class BarangayClearanceServiceImpl extends BaseService implements Baranga
 	
 		return bgyClearanceRpt;
 	}
+
+	public List<BarangayClearance> getAllBarangayClearance()
+			throws BarangayClearanceServiceException {
+		return barangayClearanceDao.getAllBarangayClearance();
+	}
+
+	public BarangayClearance getBarangayClearanceData(int id)
+			throws BarangayClearanceServiceException {
+		return barangayClearanceDao.getBarangayClearanceData(id);
+	}
+	
+	
+	
 	
 
 }

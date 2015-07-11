@@ -21,28 +21,19 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JCheckBox;
-import javax.swing.JSeparator;
 import javax.swing.JTabbedPane;
 import javax.swing.border.LineBorder;
-
 import net.sf.jasperreports.view.JasperViewer;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import com.thub.areyes1.exception.BarangayClearanceServiceException;
 import com.thub.areyes1.exception.BarangayClearanceValidationException;
-import com.thub.areyes1.factory.ServiceFactory;
-import com.thub.areyes1.factory.ServiceType;
 import com.thub.areyes1.obj.BarangayClearance;
 import com.thub.areyes1.obj.BarangayClearanceType;
 import com.thub.areyes1.service.BarangayClearanceService;
-
 import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.security.acl.Owner;
-import java.util.Enumeration;
 
 /**
  * The Class BgyClearanceRegistrationDialog.
@@ -54,12 +45,11 @@ public class BgyClearanceRegistrationDialog extends JDialog {
 	private static final long serialVersionUID = -7041948224506007761L;
 
 	/** The barangay clearance service. */
-	//private BarangayClearanceService barangayClearanceService = ServiceFactory.getService(ServiceType.BGY_CLEARANCE_SERVICE);
 	@Autowired
 	private BarangayClearanceService barangayClearanceService;// = ServiceFactory.getService(ServiceType.BGY_CLEARANCE_SERVICE);
 	
 	/** The barangay clearance. */
-	private BarangayClearance barangayClearance =new BarangayClearance();
+	private BarangayClearance barangayClearance = new BarangayClearance();
 	
 	/** The content panel. */
 	private final JPanel contentPanel = new JPanel();
@@ -97,8 +87,29 @@ public class BgyClearanceRegistrationDialog extends JDialog {
 	/** The second end no. */
 	private JTextField secondEndNo;
 	
+	/** The rdbtn new. */
 	private JRadioButton rdbtnNew;
+	
+	/** The rdbtn renewal. */
 	private JRadioButton rdbtnRenewal;
+	
+	private JCheckBox typeAOwned;
+	private JCheckBox typeRented;
+	
+	
+	private JCheckBox ownCorporation;
+	
+	private JCheckBox ownSingleProp;
+	
+	private JCheckBox ownPartnership;
+	
+	private JCheckBox ownOthers;
+	
+	private int id;
+	
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	/**
 	 * Launch the application.
@@ -115,6 +126,16 @@ public class BgyClearanceRegistrationDialog extends JDialog {
 		}
 	}
 
+	
+	public void loadEditData(int id) {
+		try {
+			//	Load it.
+			BarangayClearance bgyClearance = this.barangayClearanceService.getBarangayClearanceData(id);
+			businessNameTxt.setText(bgyClearance.getBusinessName());
+		}catch(BarangayClearanceServiceException e) {
+			e.printStackTrace();
+		}
+	}
 	/**
 	 * Create the dialog.
 	 */
@@ -135,7 +156,7 @@ public class BgyClearanceRegistrationDialog extends JDialog {
 		panel.setLayout(null);
 		
 		rdbtnNew = new JRadioButton("New");
-		rdbtnNew.setBounds(6, 6, 94, 23);
+		rdbtnNew.setBounds(6, 6, 68, 23);
 		panel.add(rdbtnNew);
 		
 		rdbtnRenewal = new JRadioButton("Renewal");
@@ -178,34 +199,34 @@ public class BgyClearanceRegistrationDialog extends JDialog {
 		panel.add(typeOfActivityTxt);
 		typeOfActivityTxt.setColumns(10);
 		
-		JCheckBox chckbxNewCheckBox = new JCheckBox("Owned");
-		chckbxNewCheckBox.setBounds(124, 191, 128, 23);
-		panel.add(chckbxNewCheckBox);
+		typeAOwned = new JCheckBox("Owned");
+		typeAOwned.setBounds(124, 191, 94, 23);
+		panel.add(typeAOwned);
 		
-		JCheckBox chckbxNewCheckBox_1 = new JCheckBox("Rented");
-		chckbxNewCheckBox_1.setBounds(264, 191, 128, 23);
-		panel.add(chckbxNewCheckBox_1);
+		typeRented = new JCheckBox("Rented");
+		typeRented.setBounds(216, 191, 94, 23);
+		panel.add(typeRented);
 		
 		capitalizationTxt = new JTextField();
 		capitalizationTxt.setBounds(124, 232, 660, 28);
 		panel.add(capitalizationTxt);
 		capitalizationTxt.setColumns(10);
 		
-		JCheckBox chckbxNewCheckBox_2 = new JCheckBox("Corportation");
-		chckbxNewCheckBox_2.setBounds(124, 272, 128, 23);
-		panel.add(chckbxNewCheckBox_2);
+		ownCorporation = new JCheckBox("Corportation");
+		ownCorporation.setBounds(124, 272, 128, 23);
+		panel.add(ownCorporation);
 		
-		JCheckBox chckbxNewCheckBox_3 = new JCheckBox("Single Proprietorship");
-		chckbxNewCheckBox_3.setBounds(124, 295, 186, 23);
-		panel.add(chckbxNewCheckBox_3);
+		ownSingleProp = new JCheckBox("Single Proprietorship");
+		ownSingleProp.setBounds(124, 295, 186, 23);
+		panel.add(ownSingleProp);
 		
-		JCheckBox chckbxNewCheckBox_4 = new JCheckBox("Partnership");
-		chckbxNewCheckBox_4.setBounds(124, 318, 128, 23);
-		panel.add(chckbxNewCheckBox_4);
+		ownPartnership = new JCheckBox("Partnership");
+		ownPartnership.setBounds(124, 318, 128, 23);
+		panel.add(ownPartnership);
 		
-		JCheckBox chckbxNewCheckBox_5 = new JCheckBox("Others");
-		chckbxNewCheckBox_5.setBounds(124, 341, 128, 23);
-		panel.add(chckbxNewCheckBox_5);
+		ownOthers = new JCheckBox("Others");
+		ownOthers.setBounds(124, 341, 128, 23);
+		panel.add(ownOthers);
 		
 		managerOperatorTxt = new JTextField();
 		managerOperatorTxt.setBounds(16, 416, 503, 28);
@@ -223,6 +244,10 @@ public class BgyClearanceRegistrationDialog extends JDialog {
 		JLabel lblManagerOperator = new JLabel("Manager / Operator");
 		lblManagerOperator.setBounds(16, 392, 123, 16);
 		panel.add(lblManagerOperator);
+		
+		JLabel lblOwnership = new JLabel("Ownership");
+		lblOwnership.setBounds(16, 276, 104, 16);
+		panel.add(lblOwnership);
 		
 		JPanel panel_1 = new JPanel();
 		tabbedPane.addTab("Endorsment", null, panel_1, null);
@@ -299,6 +324,15 @@ public class BgyClearanceRegistrationDialog extends JDialog {
 						
 						try {
 							//	Then we put it on the clearance object.
+							
+							if(rdbtnNew.isSelected()) {
+								barangayClearance.setForNew(true);
+							}
+							
+							if (rdbtnRenewal.isSelected()) {
+								barangayClearance.setForRenewal(true);
+							}
+							
 							barangayClearance.setApplicantMemberOf(applicantMemberOfTxt.getText());
 							barangayClearance.setAddress(addressTxt.getText());
 							barangayClearance.setBusinessName(businessNameTxt.getText());
@@ -311,6 +345,29 @@ public class BgyClearanceRegistrationDialog extends JDialog {
 							barangayClearance.setControlNumber(Integer.valueOf((controlNumberTxt.getText().equals("") ? "0" : controlNumberTxt.getText())));
 							barangayClearance.setOwnership(businessNameTxt.getText());
 							barangayClearance.setTypeOfBusiness(typeOfActivityTxt.getText());
+							
+							if(ownCorporation.isSelected()) {
+								barangayClearance.setOwned(true);
+							}
+							
+							if(ownOthers.isSelected()) {
+								barangayClearance.setOthers(true);
+							}
+							if(ownPartnership.isSelected()) {
+								barangayClearance.setParntership(true);
+							}
+							
+							if(ownSingleProp.isSelected()) {
+								barangayClearance.setSingleProprietorship(true);
+							}
+							
+							if(typeAOwned.isSelected()) {
+								barangayClearance.setOwned(true);
+							}
+							
+							if(typeRented.isSelected()) {
+								barangayClearance.setRented(true);
+							}
 							
 							if(rdbtnNew.isSelected()) {
 								barangayClearance.setBarangayClearanceType(BarangayClearanceType.NEW);

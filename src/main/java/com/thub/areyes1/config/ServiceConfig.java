@@ -11,6 +11,9 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import com.thub.areyes1.service.impl.BarangayClearanceServiceImpl;
 
+/**
+ * The Class ServiceConfig.
+ */
 @Configuration
 @ComponentScan(basePackageClasses = {BarangayClearanceServiceImpl.class})
 public class ServiceConfig {

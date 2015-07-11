@@ -13,8 +13,11 @@ import org.springframework.context.annotation.Import;
 import com.thub.areyes1.ui.BgyClearanceFrame;
 import com.thub.areyes1.ui.BgyClearanceRegistrationDialog;
 
+/**
+ * The Class AppConfig.
+ */
 @Configuration
-@ComponentScan(basePackageClasses = {BgyClearanceFrame.class,BgyClearanceRegistrationDialog.class})
+@ComponentScan(basePackageClasses = {BgyClearanceFrame.class, BgyClearanceRegistrationDialog.class})
 @Import(value = {DataSourceFactoryConfig.class, DaoConfig.class, ServiceConfig.class})
 public class AppConfig {	
 
