@@ -86,8 +86,17 @@ public class BarangayClearanceDaoImpl extends BaseDao
 				String updateSql = ""
 						+ "UPDATE "
 						+ " bgy_clearance "
-						+ " set name = ?,address = ?,activity = ?,building =? ,ownership =?,manager_owner =?,assoc_president =? ,second_endorsment =?,"
-						+ "seconde_location =?)"
+						+ " set "
+						+ "name = ?,"
+						+ "address = ?,"
+						+ "activity = ?,"
+						+ "building =? ,"
+						+ "ownership =?,"
+						+ "manager_owner =?,"
+						+ "assoc_president =? ,"
+						+ "second_endorsment =?,"
+						+ "seconde_location =?,"
+						+ "amount = ?)"
 						+ "WHERE  "
 						+ " id = ? ";
 				ps = this.getConnection().prepareStatement(
@@ -101,7 +110,8 @@ public class BarangayClearanceDaoImpl extends BaseDao
 				ps.setString(7, barangayClearance.getAssocHomeOwnerPresident());
 				ps.setInt(8, 0);
 				ps.setString(9, barangayClearance.getAddress());
-				ps.setInt(10, barangayClearance.getId());
+				ps.setString(10, String.valueOf(barangayClearance.getAmountPaid()));
+				ps.setInt(11, barangayClearance.getId());
 				
 			}
 			ps.execute();
@@ -198,7 +208,11 @@ public class BarangayClearanceDaoImpl extends BaseDao
 					bgyClearance.setId(rs.getInt("id"));
 					bgyClearance.setControlNumber(rs.getInt("control_no"));
 					bgyClearance.setBusinessName(rs.getString("name"));
+					bgyClearance.setAddress(rs.getString("address"));
+					bgyClearance.setAmountPaid(Float.valueOf(rs.getString("amount")));
 					
+					//bgyClearance.setApplicantMemberOf(rs.getString(""));
+					//address = ?,activity = ?,building =? ,ownership =?,manager_owner =?,assoc_president =? ,second_endorsment =?,"
 					listOfBgyClearance.add(bgyClearance);
 				}
 
